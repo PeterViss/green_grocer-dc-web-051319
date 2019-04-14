@@ -22,35 +22,15 @@ def apply_coupons(cart, coupons)
       clear = cart[item_name][:clearance]
       if count >= num
         cart[item_name][:count] = count - num
-        if cart[item_name + " W/COUPON"]
-          cart[item_name + " W/COUPON"][:count] += 1
-        else
-          cart[item_name + " W/COUPON"] = {:price => coupon[:cost], :clearance => clear, :count => 1}
-        end
-      end
-    end
-  end
+        if cart [item_name + " W/COUPON"]
+          cart[item_name + "W/COUPON"][:count] +=1
+        else 
+          cart[item_name + "W/COUPON"] = {:price => coupon[:cost], :clearance => clear, :count => 1}
+        end 
+      end 
+    end 
+  end 
   cart
-end
-
-def apply_clearance(cart)
-  cart.each do |item_name, item|
-    if item[:clearance]
-      item[:price] = (item[:price] * 0.8).round(2)
-    end
-  end
-  cart # code here
-end
-
-def total_cart(cart)
-  total = 0
-  cart.each do |item_name, item|
-    total += (item[:price] * item[:count])
-  end
-  if total > 100
-    total = (total * 0.9).round(2)
-  end
-  return total
 end
 
 
